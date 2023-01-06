@@ -9,7 +9,7 @@
 - [Mock-Up](#Mock-up)
 
 # Description
-The Social Network API is 
+This application uses MongoDB as the backend database host, taking CRUD statements and turning them into 'posts' for social media via Insomnia. The API allows you to share thoughts, add other people as friends and add your reaction to your friends thoughts.
 
 # User Story 
 + AS A social media startup
@@ -17,12 +17,22 @@ The Social Network API is
 + SO THAT my website can handle large amounts of unstructured data
 
 # Installation
-To install this application one must clone the code into your choice of application where you can create a respective repository to execute the code. Once cloned, the command npm init -y must be run to create a package where the project files will be stored. From here the command npm i must be run to install all the proper packages to run the application. Next 
+To run the Social Network API on your local device follow these steps:
+* clone repository locally with http or ssh key
+* install the follow dependencies:
+    - npm i express
+    - npm i node.js
+    - npm i mongoose
+    - npm i moment
+Please note - you must have MongoDB or something similar to view database work as the backend is using Mongoose.
+* run `npm i` to install all dependencies
+* run in the terminal `npm start`
+* once running open Mongo Compass and connect via the URL provided
 
 # Usage
-
+Via the CRUD method, this is a social media platform that a user can post their thoughts or opinions on something, pick who they're friends with and react to their friends thoughts that are posted as well.
 
 # Tests
-To test this application you will need to use Jest, to run the test in your terminal you will need to type `npm run test`.
+Through Insomnia you can test the Get, Post, Put and Delete routes for the posts/thoughts from the users.
 
-# Mock-Up# 18-Social-Network-API
+# Mock-Up
