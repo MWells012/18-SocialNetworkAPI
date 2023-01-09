@@ -1,8 +1,8 @@
-const { User, Thought, Reaction } = require('../models');
+const { User, Thought } = require('../models');
 
 const thoughtController = {
     getThoughts(req, res) {
-        User.find()
+        Thought.find()
         .then((dbThoughtData) => {
             res.json(dbThoughtData);
         })
@@ -50,7 +50,7 @@ const thoughtController = {
     updateThought (req, res) {
         Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $set: req.body }, { runValidators: true, new: true })
         .then((dbThoughtData) => {
-            if (!dbThoughData) => {
+            if (!dbThoughData) {
                 return res.status(404).json({ message: 'There is no thought with this ID.'});
             }
             res.json(dbThoughtData);
@@ -86,7 +86,7 @@ const thoughtController = {
     },
 
     addReaction (req, res) {
-        Reaction.findOneAndUpdate(req.body)
+        Thought.findOneAndUpdate(req.body)
 
         .then((dbThoughtData) => {
             if (!dbThoughtData) {
@@ -101,7 +101,7 @@ const thoughtController = {
     },
 
     deleteReaction (req, res) {
-        Reaction.findOneAndUpdate(req.body)
+        Thought.findOneAndUpdate(req.body)
 
         .then((dbThoughtData) => {
             if (!dbThoughtData) {

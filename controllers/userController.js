@@ -3,6 +3,7 @@ const { User, Thought } = require('../models');
 const userController = {
     getUser(req, res) {
         User.find()
+        .select('-__v')
         .then((dbUserData) => {
             res.json(dbUserData);
         })
@@ -25,6 +26,7 @@ const userController = {
 
     singleUser(req,res) {
         User.findOne({ _id: req.params.userId})
+        .select('-__v')
         .populate('friends')
         .populate('thoughts')
         .then((dbUserData) => {
@@ -58,24 +60,24 @@ const userController = {
     
     },
 
-    deleteUser(req, res) {
-        User.findOneAndDelete({ _id: req.params.userId })
-            .then((dbUserData) => {
-                if (!dbUserData) {
-                    return res.status(404).json({ message: 'We cannot find a user with this ID.' });
-                }
+    // deleteUser(req, res) {
+    //     User.findOneAndDelete({ _id: req.params.userId })
+    //         .then((dbUserData) => {
+    //             if (!dbUserData) {
+    //                 return res.status(404).json({ message: 'We cannot find a user with this ID.' });
+    //             }
 
-                // i'm missing something here but idk how to write it
-                return Thought.deleteMany({ _id: {$in:dbUserData.thoughts} })
-            })
-            .then(()=> {
-                res.json({ message: 'User and their thoughts have been deleted.'});
-            })
-            .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-    },
+    //             // i'm missing something here but idk how to write it
+    //             return Thought.deleteMany({ _id: {$in:dbUserData.thoughts} })
+    //         })
+    //         .then(()=> {
+    //             res.json({ message: 'User and their thoughts have been deleted.'});
+    //         })
+    //         .catch((err) => {
+    //         console.log(err);
+    //         res.status(500).json(err);
+    //     });
+    // },
     
 
 
